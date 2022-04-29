@@ -1,5 +1,5 @@
 class Texts:
-	start_state_text = 'Start text + 3 inline buttons'
+	start_state_text = 'Переписать'
 
 	bio_button_text = 'Обо мне'
 	bio_state_text = \
