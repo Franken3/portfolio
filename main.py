@@ -5,7 +5,6 @@ from aiogram.utils import executor
 from config import TOKEN
 from inline_gen import gen_inl_kb
 from msg_gen import *
-
 bot = Bot(token = TOKEN)
 dp = Dispatcher(bot)
 
@@ -13,13 +12,13 @@ dp = Dispatcher(bot)
 # bot.py
 @dp.message_handler(commands = ['start'])
 async def process_command(message: types.Message):
+	print(message.from_user.id,  message.from_user.username)
 	await bot.delete_message(message.from_user.id, message_id = message.message_id)
 	await bot.send_message(message.from_user.id, text = Texts.start_state_text, reply_markup = gen_inl_kb(start = True))
 
 
 @dp.callback_query_handler()
 async def process_callback_button(callback_query: types.CallbackQuery):
-	# Неприятное решение для переачи экхемпляров класса через тг апи для получения инфы о state
 	callback_data = states[callback_query.data]
 	back = False
 	projects = False
